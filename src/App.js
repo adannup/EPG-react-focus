@@ -24,9 +24,11 @@ class App extends Component {
   componentDidUpdate() {
     console.log('Recibio actuaizaciones');
     const element = document.getElementById(`test-${this.state.nextFocus.toString()}`);
-    element.blur();
-    console.log(element);
-    element.focus();
+    if(element) {
+      element.blur();
+      console.log(element);
+      element.focus();
+    }
   }
 
   onWillmoveFocus(e) {
