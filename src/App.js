@@ -24,8 +24,9 @@ class App extends Component {
   componentDidUpdate() {
     console.log('Recibio actuaizaciones');
     const element = document.getElementById(`test-${this.state.nextFocus.toString()}`);
-
+    element.blur();
     console.log(element);
+    element.focus();
   }
 
   onWillmoveFocus(e) {
@@ -33,12 +34,15 @@ class App extends Component {
     if(e.detail.direction === 'down' && (parseInt(e.target.attributes["data-counter"].value) <=8)  && (parseInt(e.target.attributes["data-counter"].value) >=5)) {
       console.log(parseInt(e.target.attributes["data-counter"].value));
       console.log('Hacia abajo');
-      this.forceFocus(e);
+      console.log('Se ejecuta el forceFocus');
+      const elementSumado = parseInt(e.target.attributes["data-counter"].value) + this.state.itemByRow;
+      console.log('Elemento sumado:', elementSumado); // este hay que ejecutarlo por que no se ejecuta el focus
       this.setState({
         channels: [
           [5, 6, 7, 8],
           [9, 10, 11, 12],
         ],
+        nextFocus: elementSumado,
       })
     }
 
